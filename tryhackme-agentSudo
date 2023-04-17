@@ -1,0 +1,72 @@
+IP=10.10.58.173
+
+
+
+Port scan result:
+
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+
+According to information that given in website which is on http://10.10.58.173 there is a secret page via user-agent.
+
+The secret page user-agent is C. Agent name is Chris.
+
+There is a note like:
+
+Attention chris, <br><br>
+
+Do you still remember our deal? Please tell agent J about the stuff ASAP. Also, change your god damn password, is weak! <br><br>
+
+From,<br>
+Agent R
+
+
+---------------
+
+If you brute force for ftp by using tools like hydra you will find the password is "crystal".
+
+here is a hydra example command:
+
+hydra -l chris -P /usr/share/wordlists/rockyou.txt  -t 32  10.10.58.173 ftp
+
+--------------
+
+On ftp server there are some files like:
+
+
+-rw-r--r--    1 0        0             217 Oct 29  2019 To_agentJ.txt
+-rw-r--r--    1 0        0           33143 Oct 29  2019 cute-alien.jpg
+-rw-r--r--    1 0        0           34842 Oct 29  2019 cutie.png
+
+
+
+To-agentJ.txt == All these alien like photos are fake! Agent R stored the real picture inside your directory. Your login password is somehow stored in the fake picture. It shouldn't be a problem for you.
+
+
+if you string cutie.png you will see there is a hidden zip file like : To_agentR.txt
+
+binwalk -e cutie.png --> _cutie.png.extracted
+
+if you zip2john the file named 8702.zip and crack the hash:
+
+alien
+
+After that 7z 8072.zip and enter pass. Than you will see that the size of text file has changed.
+
+content: We need to send the picture to 'QXJlYTUx' as soon as possible!
+
+If you decode this you will find = Area51
+
+steghide extract -sf cute-alien.jpg --> other username is james and password is hackerrules!
+
+user flag: b03d975e8c92a7c04146cfa7a5a313c7
+
+incident name: Roswell alien autopsy
+
+CVE: CVE-2019-14287
+
+root flag: b53a02f55b57d4439e3341834d70c062
+
+Agent R is : DesKel
