@@ -1,0 +1,85 @@
+IP=10.10.187.114
+
+-----------------
+
+NMAP:
+
+
+
+PORT    STATE SERVICE VERSION
+21/tcp  open  ftp     vsftpd 3.0.2
+22/tcp  open  ssh     OpenSSH 6.7p1 Debian 5+deb8u8 (protocol 2.0)
+80/tcp  open  http    Apache httpd
+|_http-title: Purgatory
+|_http-server-header: Apache
+111/tcp open  rpcbind 2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+|   100024  1          40478/tcp6  status
+|   100024  1          45610/udp6  status
+|   100024  1          48090/udp   status
+|_  100024  1          56023/tcp   status
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+
+
+--------------------
+
+There is directory like:
+
+/island               (Status: 301) [Size: 236] [--> http://10.10.187.114/island/]
+
+TASK -1) /island/2100
+
+TASK -2)/green_arrow.ticket 
+
+TASK -3)!#th3h00d
+
+
+
+
+There is a token like:
+
+RTy8yhBQdscX --> !#th3h00d (password)
+
+in the source code:
+
+code word is:(username) vigilante
+
+
+
+----------------------
+
+There are 3 image in ftp server like:
+
+-rw-r--r--    1 0        0          511720 May 01  2020 Leave_me_alone.png
+-rw-r--r--    1 0        0          549924 May 05  2020 Queen's_Gambit.png
+-rw-r--r--    1 0        0          191026 May 01  2020 aa.jpg
+
+
+
+Leave_me_alone.png file format is different than png. Its file format is  data. And also if you crack the password of aa.jpg file you will find the password is "password".
+If you extract it you will have another file called ss.zip
+
+unzip ss.zip                 
+Archive:  ss.zip
+  inflating: passwd.txt              
+  inflating: shado 
+
+
+TASK -4) shado
+
+
+
+you can enter to ssh with "username:slade","password:M3tahuman".
+
+TASK -5) THM{P30P7E_K33P_53CRET5__C0MPUT3R5_D0N'T}
+
+if you sudo -l you will see that you can only run /sudo/bin/pkexec
+
+you can use: sudo pkexec /bin/sh to take root.
+
+TASK -6)THM{MY_W0RD_I5_MY_B0ND_IF_I_ACC3PT_YOUR_CONTRACT_THEN_IT_WILL_BE_COMPL3TED_OR_I'LL_BE_D34D}
